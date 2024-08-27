@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from galeria.models import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'galeria/index.html')
+    photos = photo.objects.all()
+    return render(request, 'galeria/index.html', {'cards':photos})
 
-def image(request):
-    return render(request, 'galeria/imagem.html')
+def image(request, item_id):
+    image = get_object_or_404(photo, pk=item_id)
+    return render(request, 'galeria/imagem.html', {"image":image})
