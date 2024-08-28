@@ -3,7 +3,7 @@ from galeria.models import *
 # Create your views here.
 
 def index(request):
-    photos = photo.objects.all()
+    photos = photo.objects.order_by('-publish_date').filter(published = True)
     return render(request, 'galeria/index.html', {'cards':photos})
 
 def image(request, item_id):
