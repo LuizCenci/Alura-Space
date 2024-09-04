@@ -9,3 +9,12 @@ def index(request):
 def image(request, item_id):
     image = get_object_or_404(photo, pk=item_id)
     return render(request, 'galeria/imagem.html', {"image":image})
+
+def search(request):
+    photos = photo.objects.order_by('-publish_date').filter(published = True)
+    print(photos.count())
+    if 'search_text' in request.GET:
+        search_text = request.GET['search_text']
+        if search_text:
+            photos = (photos.filter(name__icontains=search_text) | photos.filter(description__icontains=search_text))
+    return render(request, 'galeria/search.html', {'cards':photos})

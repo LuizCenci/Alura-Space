@@ -18,4 +18,4 @@ class photo(models.Model):
     publish_date = models.DateTimeField(default=datetime.now(), blank=False)
 
     def __str__(self) -> str:
-        return f'Photography {self.name}'
+        return self.name
