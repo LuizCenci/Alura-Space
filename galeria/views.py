@@ -12,9 +12,16 @@ def image(request, item_id):
 
 def search(request):
     photos = photo.objects.order_by('-publish_date').filter(published = True)
-    print(photos.count())
+    search_text = ''
     if 'search_text' in request.GET:
         search_text = request.GET['search_text']
         if search_text:
-            photos = (photos.filter(name__icontains=search_text) | photos.filter(description__icontains=search_text))
-    return render(request, 'galeria/search.html', {'cards':photos})
+            photos = (photos.filter(name__icontains=search_text) | photos.filter(description__icontains=search_text)
+                      | photos.filter(tag__icontains=search_text))
+
+
+    context = {
+        'cards':photos,
+        'search_text':search_text
+    }
+    return render(request, 'galeria/search.html', context)

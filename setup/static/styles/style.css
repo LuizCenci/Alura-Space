@@ -100,6 +100,11 @@ table {
     margin: 0 auto;
     width: 100%;
 }
+.btn__busca{
+    margin: 0%;
+    border: 0%;
+    padding: 0%;
+}
 
 .busca__input {
     align-items: center;
@@ -354,6 +359,7 @@ table {
 }
 
 .tags {
+
     padding: 1.5rem 0;
     display: flex;
     align-items: center;
@@ -362,10 +368,12 @@ table {
 }
 
 .tags__titulo {
+
     margin-right: 4rem;
 }
 
 .tags__lista {
+
     display: flex;
 }
 
@@ -379,7 +387,7 @@ table {
     border: 2px solid transparent;
 }
 
-.tags__tag:hover {
+.tags__tag :hover {
     border: 2px solid #7B78E5;
     cursor: pointer;
-}
+}   
