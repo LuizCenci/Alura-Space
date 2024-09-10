@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from users.forms import *
 
 def login(request):
-    return render(request, "users/login.html")
+    form = login_form()
+    return render(request, "users/login.html", {'form':form})
 
 def cadastro(request):
-    return render(request, "users/cadastro.html")
+    form = singup_form()
+    
+    return render(request, "users/cadastro.html", {'form':form})
