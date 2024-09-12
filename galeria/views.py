@@ -3,14 +3,19 @@ from galeria.models import *
 # Create your views here.
 
 def index(request):
+    username = request.user.username
     photos = photo.objects.order_by('-publish_date').filter(published = True)
-    return render(request, 'galeria/index.html', {'cards':photos})
+    context = {'username':username, 'cards':photos}
+    return render(request, 'galeria/index.html', context)
 
 def image(request, item_id):
+    username = request.user.username
     image = get_object_or_404(photo, pk=item_id)
-    return render(request, 'galeria/imagem.html', {"image":image})
+    context = {'username':username, 'image':image}
+    return render(request, 'galeria/imagem.html', context)
 
 def search(request):
+    username = request.user.username
     photos = photo.objects.order_by('-publish_date').filter(published = True)
     search_text = ''
     if 'search_text' in request.GET:
@@ -21,6 +26,7 @@ def search(request):
 
 
     context = {
+        'username':username,
         'cards':photos,
         'search_text':search_text
     }

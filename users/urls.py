@@ -3,5 +3,6 @@ from users.views import *
 
 urlpatterns = [
     path('login', login, name='login'),
-    path('cadastro', cadastro, name='cadastro')
+    path('register', register, name='register'),
+    path('logout', logout, name='logout')
 ]

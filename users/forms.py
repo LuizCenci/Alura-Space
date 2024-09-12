@@ -21,8 +21,8 @@ class login_form(forms.Form):
     )
 
 class singup_form(forms.Form):
-    singup_name = forms.CharField(
-        label='Nome completo',
+    register_name = forms.CharField(
+        label='Username',
         required=True,
         max_length=100,
         widget=forms.TextInput(
