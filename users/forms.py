@@ -57,3 +57,20 @@ class singup_form(forms.Form):
                    'placeholder':'Confirme sua senha'}
         )
     )
+
+    def clean_register_name(self):
+        name = self.cleaned_data.get('register_name')
+        if name:
+            name = name.strip()
+            if ' ' in name:
+                raise forms.ValidationError('O username não deve conter espaços entre as letras!')
+            else:
+                return name
+
+    def clean_password_conf(self):
+         password_1 = self.cleaned_data.get('password')      
+         password_2 = self.cleaned_data.get('password_conf')  
+         if password_1 and password_2:
+              if password_1 != password_2:
+                   raise forms.ValidationError('As senhas devem ser iguais!')    
+              return password_2

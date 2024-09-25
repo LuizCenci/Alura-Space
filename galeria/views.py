@@ -1,8 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from galeria.models import *
 # Create your views here.
 
-def index(request):
+def index(request): 
+    if not request.user.is_authenticated:
+        messages.error(request, 'Por favor, realize seu login para acessar o site')
+        return redirect('login')
+    
     username = request.user.username
     photos = photo.objects.order_by('-publish_date').filter(published = True)
     context = {'username':username, 'cards':photos}
@@ -15,6 +20,10 @@ def image(request, item_id):
     return render(request, 'galeria/imagem.html', context)
 
 def search(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Por favor, realize seu login para acessar o site')
+        return redirect('login')
+    
     username = request.user.username
     photos = photo.objects.order_by('-publish_date').filter(published = True)
     search_text = ''

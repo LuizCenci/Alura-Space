@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 # Create your models here.
 class photo(models.Model):
     tag_choices = [
@@ -16,6 +17,13 @@ class photo(models.Model):
     tag = models.CharField(max_length=100, choices=tag_choices, default='')
     published = models.BooleanField(default=False)
     publish_date = models.DateTimeField(default=datetime.now(), blank=False)
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=False,
+        related_name='user'
+        )
 
     def __str__(self) -> str:
         return self.name

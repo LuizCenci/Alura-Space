@@ -31,9 +31,7 @@ def register(request):
     if request.method == 'POST':
         form = singup_form(request.POST)
         if form.is_valid():
-            if form['password'].value() != form['password_conf'].value():
-                messages.error(request, 'As senhas devem ser iguais!')
-                return redirect('register')
+            
             
             name = form['register_name'].value()
             email = form['email'].value()
