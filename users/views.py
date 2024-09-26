@@ -32,7 +32,8 @@ def register(request):
         form = singup_form(request.POST)
         if form.is_valid():
             
-            
+            first_name = form['first_name'].value()
+            surname = form['surname'].value()
             name = form['register_name'].value()
             email = form['email'].value()
             password = form['password'].value()
@@ -42,6 +43,8 @@ def register(request):
                 return redirect('register')
             
             user = User.objects.create_user(
+                first_name=first_name,
+                last_name=surname,
                 username=name,
                 email=email,
                 password=password

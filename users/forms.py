@@ -21,13 +21,31 @@ class login_form(forms.Form):
     )
 
 class singup_form(forms.Form):
+    first_name = forms.CharField(
+        label='Primeiro nome',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={'class':'form-control',
+                   'placeholder':'João'}
+        )
+    )
+    surname = forms.CharField(
+        label='Sobrenome',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={'class':'form-control',
+                   'placeholder':'Silva'}
+        )
+    )
     register_name = forms.CharField(
         label='Username',
         required=True,
         max_length=100,
         widget=forms.TextInput(
             attrs={'class':'form-control',
-                   'placeholder':'João Silva'}
+                   'placeholder':'joaosilva'}
         )
     )
     email = forms.EmailField(
