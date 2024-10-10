@@ -1,5 +1,5 @@
 from django.contrib import admin
-from galeria.models import *
+from apps.galeria.models import *
 
 # Register your models here
 class PhotosList(admin.ModelAdmin):

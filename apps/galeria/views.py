@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from galeria.models import *
+from apps.galeria.models import *
 # Create your views here.
 
 def index(request): 
