@@ -1,5 +1,6 @@
-{%extends 'users/base.html'%}
+{%extends 'partials/base.html'%}
     {%block content%}
+        <section class="galeria" style="margin-left: 5em">
                 <form action="{% url 'login' %}" method="POST">
                     {%csrf_token%}
                     <div class="row">
@@ -16,5 +17,5 @@
                         </button>
                     </div>
                 </form>
-                
+        </section>  
     {%endblock%}

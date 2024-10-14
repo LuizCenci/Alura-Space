@@ -10,6 +10,9 @@
                 {%else%}
                 <a href="{% url 'login' %}"><img width="11%" src="{% static '/assets/ícones/1x/login-de-usuario.png' %}" alt=""> Entre ou Cadastre-se</a>
                 {%endif%}
+                {% if request.resolver_match.url_name == 'login' %}
+                    <a class="tags"  href="{% url 'register'%}">Novo User? Crie sua conta</a>
+                {%endif%}
                 <a href="{% url 'logout' %}"><img width="11%" src="{% static '/assets/ícones/1x/sair.png' %}" alt=""> Sair</a>
             </nav>
         </section>
