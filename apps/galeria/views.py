@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from apps.galeria.models import *
+from apps.galeria.forms import *
 # Create your views here.
 
 def index(request): 
@@ -40,3 +41,25 @@ def search(request):
         'search_text':search_text
     }
     return render(request, 'galeria/search.html', context)
+
+def new_image(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Por favor, realize seu login para acessar o site')
+        return redirect('login')
+    
+    username = request.user.username
+
+    form = photo_form()
+    if request.method == 'POST':
+        form = photo_form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    context = {'form':form, 'username':username}
+    return render(request, 'galeria/new_image.html', context)
+
+def edit_image(request):
+    return render
+
+def delete_image(request):
+    return render()

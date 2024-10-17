@@ -16,10 +16,21 @@
                                 <p class="imagem__titulo">{{image.name}}</p>
                                 <p class="imagem__descricao">{{image.subtitle}}</p>
                                 <p class="imagem__texto">{{image.description}}</p>
+                                
                             </div>
+                            <div class="buttons">
+                                <a href="{% url 'edit_image' %}"><button class="btn btn-success col-12" style="padding: top 5px;" type="" name="save_image">
+                                    Editar</button></a>
+                                <a href="{% url 'delete_image' %}"><button class="btn btn-danger col-12" style="padding: top 5px;" type="" name="save_image">
+                                    Deletar</button></a>
+                            </div>
+                            
                         </div>
+                        
                     </div>
+                    
                 </section>
+               
             </section>
         
     

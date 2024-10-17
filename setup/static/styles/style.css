@@ -538,3 +538,8 @@ table {
     appearance: none;
 
 }
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+}
