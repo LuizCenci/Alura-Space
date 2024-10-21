@@ -31,7 +31,7 @@ def search(request):
     if 'search_text' in request.GET:
         search_text = request.GET['search_text']
         if search_text:
-            photos = (photos.filter(name__icontains=search_text) | photos.filter(description__icontains=search_text)
+            photos = (photos.filter(name__icontains=search_text) 
                       | photos.filter(tag__icontains=search_text))
 
 
@@ -40,7 +40,7 @@ def search(request):
         'cards':photos,
         'search_text':search_text
     }
-    return render(request, 'galeria/search.html', context)
+    return render(request, 'galeria/index.html', context)
 
 def new_image(request):
     if not request.user.is_authenticated:
@@ -54,12 +54,39 @@ def new_image(request):
         form = photo_form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Nova imagem salva')
             return redirect('index')
     context = {'form':form, 'username':username}
     return render(request, 'galeria/new_image.html', context)
 
-def edit_image(request):
-    return render
 
-def delete_image(request):
-    return render()
+def edit_image(request, item_id):
+    username = request.user.username
+    infos = photo.objects.get(id=item_id)
+    form = photo_form(instance=infos)
+
+    if request.method == 'POST':
+        form = photo_form(request.POST, request.FILES, instance=infos)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Imagem salva')
+            return redirect('index')
+    context = {'form':form, 'username':username, 'item_id':item_id}
+    return render(request, 'galeria/edit_image.html', context)
+
+def delete_image(request, item_id):
+   
+    infos = photo.objects.get(id=item_id)
+    infos.delete()
+    messages.success(request, 'Imagem removida')
+    return redirect('index')
+
+def filter(request, tag):
+    username = request.user.username
+    photos = photo.objects.order_by('-publish_date').filter(published = True, tag = tag)
+    context = {
+        'username':username,
+        'cards':photos,
+        'tag':tag
+    }
+    return render(request, 'galeria/index.html', context)

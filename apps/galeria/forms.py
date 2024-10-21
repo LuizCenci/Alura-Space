@@ -12,7 +12,7 @@ class photo_form(forms.ModelForm):
             'description':'Descrição',
             'image':'Image',
             'tag':'Categoria',
-            'publish_date':'Data de divulgação',
+            'publish_date':'Data de publicação',
             'user':'Usuário'
         }
         widgets = {

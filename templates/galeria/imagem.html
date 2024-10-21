@@ -19,9 +19,9 @@
                                 
                             </div>
                             <div class="buttons">
-                                <a href="{% url 'edit_image' %}"><button class="btn btn-success col-12" style="padding: top 5px;" type="" name="save_image">
+                                <a href="{% url 'edit_image' image.id %}"><button class="btn btn-success col-12" style="padding: top 5px;" type="" name="edit_image">
                                     Editar</button></a>
-                                <a href="{% url 'delete_image' %}"><button class="btn btn-danger col-12" style="padding: top 5px;" type="" name="save_image">
+                                <a href="{% url 'delete_image' image.id %}"><button class="btn btn-danger col-12" style="padding: top 5px;" type="" name="delete_image">
                                     Deletar</button></a>
                             </div>
                             

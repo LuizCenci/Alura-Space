@@ -5,7 +5,7 @@
                 <a href="#"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png'%}"> Mais vistas</a>
                 <a href="#"><img src="{% static '/assets/ícones/1x/Novas - inativo.png'%}"> Novas</a>
                 <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png'%}"> Surpreenda-me</a>   
-                <a href="{% url 'new_image' %}">Nova Imagem</a>
+                <a href="{% url 'new_image' %}"><img width="11%" src="{% static '/assets/ícones/1x/sinal-de-mais.png' %}" alt="">Nova Imagem</a>
                 {%if username != ''%}
                 <a href="{% url 'login' %}"><img width="11%" src="{% static '/assets/ícones/1x/login-de-usuario.png' %}" alt=""> {{username}}</a>
                 {%else%}

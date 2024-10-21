@@ -6,9 +6,9 @@ class photo(models.Model):
     tag_choices = [
         ('NEBULOSA', 'nebulosa'),
         ('ESTRELA', 'estrela'),
-        ('GÁLAXIA', 'galaxia'),
+        ('GALÁXIA', 'galaxia'),
         ('PLANETA', 'planeta'),
-        ('Satélites','satelites')
+        ('SATÉLITES','satelites')
     ]
     name = models.CharField(max_length=100, null=False, blank=False)
     subtitle = models.CharField(max_length=150, null=False, blank=False)

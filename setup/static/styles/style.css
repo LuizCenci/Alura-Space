@@ -539,7 +539,3 @@ table {
 
 }
 
-.buttons{
-    display: flex;
-    flex-direction: column;
-}
