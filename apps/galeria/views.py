@@ -10,7 +10,7 @@ def index(request):
         return redirect('login')
     
     username = request.user.username
-    photos = photo.objects.order_by('-publish_date').filter(published = True)
+    photos = photo.objects.order_by('name').filter(published = True)
     context = {'username':username, 'cards':photos}
     return render(request, 'galeria/index.html', context)
 
@@ -42,6 +42,20 @@ def search(request):
     }
     return render(request, 'galeria/index.html', context)
 
+def newest(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Por favor, realize seu login para acessar o site')
+        return redirect('login')
+    
+    username = request.user.username
+    photos = photo.objects.order_by('-publish_date').filter(published = True)
+
+    context = {
+        'username':username,
+        'cards':photos,
+    }
+    
+    return render(request, 'galeria/index.html', context)
 def new_image(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Por favor, realize seu login para acessar o site')
@@ -49,11 +63,13 @@ def new_image(request):
     
     username = request.user.username
 
-    form = photo_form()
+    form = photo_form(initial={'user':request.user.username})
     if request.method == 'POST':
         form = photo_form(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            new_image_instance = form.save(commit=False)
+            new_image_instance.user = request.user
+            new_image_instance = form.save()
             messages.success(request, 'Nova imagem salva')
             return redirect('index')
     context = {'form':form, 'username':username}

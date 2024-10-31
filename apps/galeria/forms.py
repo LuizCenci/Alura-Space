@@ -5,7 +5,7 @@ from datetime import date
 class photo_form(forms.ModelForm):
     class Meta:
         model = photo
-        exclude = ['published',]
+        exclude = ['published','user']
         labels = {
             'name':'Nome',
             'subtitle':'Legenda',
@@ -29,5 +29,5 @@ class photo_form(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-            'user':forms.Select(attrs={'class':'form-control'})
+            'user':forms.TextInput(attrs={'class':'form-control', 'disabled':True})
         }
